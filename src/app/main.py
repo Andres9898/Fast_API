@@ -13,6 +13,12 @@ app = FastAPI(
     #lifespan=lifespan,
 )
 
+# Crear tablas al inicio
+@app.on_event("startup")
+def startup():
+    #Base.metadata.create_all(bind=engine)
+    print("database startups")
+
 
 app.include_router(providers.router, prefix="/providers", tags=["providers"])
 
