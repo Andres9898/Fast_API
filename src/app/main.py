@@ -16,7 +16,7 @@ app = FastAPI(
 # Crear tablas al inicio
 @app.on_event("startup")
 def startup():
-    #Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
     print("database startups")
 
 

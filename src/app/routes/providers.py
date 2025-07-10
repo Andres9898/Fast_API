@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Form, HTTPException
+from fastapi import APIRouter, Form, HTTPException, Depends
 import config
 from sqlalchemy.orm import Session
-from app.database import get_db
+from app.database.database import get_db
 from app.models.providers import Provider
 from app.schemas.providers import ProviderCreate, ProviderOut
 
