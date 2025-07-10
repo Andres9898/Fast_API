@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.database.database import get_db
 from app.models.providers import Provider
 from app.schemas.providers import ProviderCreate, ProviderOut
+from typing import List
 
 router = APIRouter(prefix="/providers", tags=["providers"])
 
