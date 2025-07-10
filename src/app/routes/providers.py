@@ -7,16 +7,13 @@ from app.schemas.providers import ProviderCreate, ProviderOut
 
 router = APIRouter(prefix="/providers", tags=["providers"])
 
-@router.get("/")
-def get_providers():
+@router.get("/", response_model=List[ProviderOut])
+def get_providers(db: Session = Depends(get_db)):
     try:
-        #take from db all providers
-        results = ("nothing done")
-        
+        results = db.query(Provider).all()
         return results
-
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error al procesar imágenes: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al obtener proveedores: {str(e)}")
 
 @router.post("/", response_model=ProviderOut)
 def create_provider(provider: ProviderCreate, db: Session = Depends(get_db)):
